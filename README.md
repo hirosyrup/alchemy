@@ -11,8 +11,8 @@
 ## セットアップ
 
 ### 前提条件
-- Python 3.10+
-- Node.js 16+
+- Python 3.11+
+- Node.js 20+
 - Google Cloud SDK
 - Terraform
 

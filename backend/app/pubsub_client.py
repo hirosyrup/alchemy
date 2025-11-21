@@ -3,7 +3,7 @@ import json
 from google.cloud import pubsub_v1
 
 PROJECT_ID = os.getenv("PROJECT_ID", "dummy-project")
-TOPIC_ID = "race-events"
+TOPIC_ID = "alchemy-events"
 
 publisher = pubsub_v1.PublisherClient()
 topic_path = publisher.topic_path(PROJECT_ID, TOPIC_ID)

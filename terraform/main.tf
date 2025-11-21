@@ -12,6 +12,16 @@ resource "google_project_service" "services" {
   disable_on_destroy = false
 }
 
+# Artifact Registry Repository
+resource "google_artifact_registry_repository" "repo" {
+  location      = var.region
+  repository_id = "alchemy-repo"
+  description   = "Docker repository for Alchemy System"
+  format        = "DOCKER"
+
+  depends_on = [google_project_service.services]
+}
+
 # Firestore Database
 resource "google_firestore_database" "database" {
   project     = var.project_id
@@ -24,7 +34,7 @@ resource "google_firestore_database" "database" {
 
 # Pub/Sub Topic for Race Events
 resource "google_pubsub_topic" "race_events" {
-  name = "race-events"
+  name = "alchemy-events"
   depends_on = [google_project_service.services]
 }
 
@@ -76,7 +86,7 @@ resource "google_cloud_run_service_iam_binding" "invoker_binding" {
 # Cloud Scheduler (Dispatcher)
 # Triggers every minute to check for upcoming races
 resource "google_cloud_scheduler_job" "dispatcher" {
-  name             = "race-dispatcher"
+  name             = "alchemy-dispatcher"
   description      = "Triggers the dispatcher every minute"
   schedule         = "* * * * *"
   time_zone        = "Asia/Tokyo"
