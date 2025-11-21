@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+requests
+beautifulsoup4
+pandas
+numpy
+autogluon
+google-cloud-firestore
+google-cloud-pubsub
+google-cloud-scheduler
+python-dotenv
+tqdm
+aiohttp
